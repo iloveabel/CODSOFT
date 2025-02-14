@@ -1,0 +1,70 @@
+import java.util.Scanner;
+
+public class CurrencyConverter{
+
+    
+    public static double getExchangeRate(String givenCurrency, String endCurrency) {
+        if (givenCurrency.equals("USD") && endCurrency.equals("INR")) {
+            return 82.00;  // rate for USD to INR
+        } else if (givenCurrency.equals("USD") && endCurrency.equals("EUR")) {
+            return 0.85;  //rate for USD to EUR
+        } else if (givenCurrency.equals("USD") && endCurrency.equals("AED")) {
+            return 3.67;  // rate for USD to AED
+        } else if (givenCurrency.equals("INR") && endCurrency.equals("USD")) {
+            return 0.012;  //  rate for INR to USD
+        } else if (givenCurrency.equals("INR") && endCurrency.equals("EUR")) {
+            return 0.010;  //  rate for INR to EUR
+        } else if (givenCurrency.equals("INR") && endCurrency.equals("AED")) {
+            return 0.045;  //  rate for INR to AED
+        } else if (givenCurrency.equals("EUR") && endCurrency.equals("USD")) {
+            return 1.18;  //  rate for EUR to USD
+        } else if (givenCurrency.equals("EUR") && endCurrency.equals("INR")) {
+            return 88.00;  //  rate for EUR to INR
+        } else if (givenCurrency.equals("EUR") && endCurrency.equals("AED")) {
+            return 4.31;  //  rate for EUR to AED
+        } else if (givenCurrency.equals("AED") && endCurrency.equals("USD")) {
+            return 0.27;  //  rate for AED to USD
+        } else if (givenCurrency.equals("AED") && endCurrency.equals("INR")) {
+            return 22.00;  //  rate for AED to INR
+        } else if (givenCurrency.equals("AED") && endCurrency.equals("EUR")) {
+            return 0.23;  //  rate for AED to EUR
+        }
+
+        
+        return -1;
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        
+        System.out.print("Enter base currency (USD, INR, EUR, AED): ");
+        String givenCurrency = scanner.nextLine().toUpperCase();
+
+        
+        System.out.print("Enter target currency (USD, INR, EUR, AED): ");
+        String endCurrency = scanner.nextLine().toUpperCase();
+
+        
+        double exchangeRate = getExchangeRate(givenCurrency, endCurrency);
+
+        
+        if (exchangeRate == -1) {
+            System.out.println("Sorry, we don't support the given currency pair.");
+            return;
+        }
+
+        
+        System.out.print("Enter amount to convert: ");
+        double amount = scanner.nextDouble();
+
+        
+        double convertedAmount = amount * exchangeRate;
+
+        
+        System.out.println("\n" + amount + " " + givenCurrency + " is equivalent to " 
+        + convertedAmount + " " + endCurrency + " at the exchange rate " + exchangeRate);
+
+        scanner.close();
+    }
+}
